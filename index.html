@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>~Bash~</title>
+	<link rel="icon" href="icon-bash.png">
+	<style>
+*{
+	font-weight: 200;
+}
+body{
+	background: lightgray;
+	margin: 20px;
+}
+
+h1{
+	text-align: center;
+}
+pre{
+	padding: 10px;
+	background: #000;
+	color: #2DD728;
+	font-size: 20px;
+	border: 1px solid #000;
+	border-radius: 10px;
+}
+.pre-1{
+	background: #000;
+	color: #ffff;
+}
+.sub:hover{
+	color: #ffff;
+	background-color: #000;
+}
+.sub{
+	display: inline;
+}
+</style>
+</head>
+<body>
+	<h1>Bash (Bourne-again Shell)</h1>
+	<h2>Shell = Es un interprete que usa comandos y ordenes para interactuar con el sistema operativo</h2>
+	<h2>Comandos de linux basicos</h2>
+<pre class="pre-1">
+ls = En lista los archivos que se encuentran en el directorio actual
+cd = Cambia de directorio
+pwd = Imprime el directorio actual de trabajo
+clear = Limpia la pantalla
+mkdir = Crea un directorio
+rmdir = Elimina directorios
+touch = Crea archivos
+rm = Elimina archivos
+mv = Mueve archvios/directorios
+cp = Copia archivos
+cat = Muestra el contenido de una archivo
+chmod = Cambia los permisos de una archivo
+grep = busca patrones de texto en archivos
+</pre>
+	<h2>Shebang = Indica la ruta de tu shell predeterminada</h2>
+<pre>
+#!/bin/bash
+</pre>
+	<h2>echo = Imprime Texto En La Pantalla</h2>
+<pre>
+echo "Hello, world!"
+</pre>
+	<h2>read = Lee la entrada del usuario y guarda la informacion en una variable</h2>
+<pre>
+read variable
+</pre>
+	<h2>Variable = Donde se guarda informacion</h2>
+<pre>
+variable="Valor de la variable"
+nombre="Juan"
+edad=27
+</pre>
+        <h3>Variables de entorno mas usadas :</h3>
+<pre>
+$USER = Indica el nombre de tu usuario
+$PWD = (Print Working Directory) = Imprime el directorio actual de trabajo
+$HOME = Indica la ruta de tu Inicio
+$SHELL = Indica tu shell predeterminada
+</pre>
+	<h3>Ejemplo :</h3>
+<pre class="pre-1">
+echo "Cual es tu nombre?"
+read name
+echo "Hola, $name"
+
+Cual es tu nombre? 
+qwerty
+Nice to meet you qwerty
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Variables Especiales</h2>
+<pre>
+$0	El nombre del script bash.
+$1, $2...$n	Los argumentos del script bash.
+$$	La identificación del proceso del shell actual.
+$@	Todos los argumentos pasados
+</pre>
+	<h2>Variables Constantes en Bash</h2>
+	<h3 class="sub">readonly = Indica que la variable no se podra cambiar despues (constante)</h3>
+<pre>
+readondly PI=3.14159
+</pre>
+	<h2>Sustitucion de comando (Capturar el output de otros comandos)</h2>
+<pre>
+TODAY=$(date)
+echo "$TODAY"
+
+Sat Mar  2 10:54:13 AM CST 2024
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Pasar Argumentos al Script</h2>
+	<h3>Para pasar argumentos al script se usa el $ , asi ($1, $2, $3, $4)</h3>
+	<h3>Ejemplo :</h3>
+<pre class="pre-1">
+nombre=$1
+echo "Tu nombre es $nombre"
+
+qwerty@penguin:~/scripts$ ./ejemplo.sh Juan
+Tu nombre es Juan
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Operaciones aritmeticas :</h2>
+<pre>
+num1="20"
+num2="10"
+echo $((num1 + num2)) = 30
+echo $((num1 - num2)) = 10
+echo $((num1 * num2)) = 200
+echo $((num1 / num2)) = 2
+</pre>
+	<h2>Operaciones de comparacion</h2>
+<pre>
+num1="20"
+num2="10"
+echo $((num1 == num2)) = 0
+echo $((num1 != num2)) = 1
+echo $((num1 > num2)) = 1
+echo $((num1 < num2)) = 0
+echo $((num1 >= num2)) = 1
+echo $((num1 <= num2)) = 0
+</pre>
+<pre>
+-eq = Igual
+-ne = No igual
+-lt = Menor que
+-gt = Mayor que
+-ge = Mayor o igual que
+-le = Menor o igual que
+</pre>
+	<h2>Matriz = Es una coleccion de elementos</h2>
+<pre>
+files=("f1.txt" "f2.txt" "f3.txt")
+
+echo ${files[0]} = Selecciona el elemento #
+echo ${#files} = Indica el numero de caracteres totales
+echo ${files[*]} = Imprime toos lo elementos de la matriz
+echo ${#files[@]} = Imprime el numero total de elementos
+echo ${files[0]}="f#.txt" = Tambien puedes actualizar cualquier elemento
+files+=("f4.txt") = Agrega elementos a la matriz
+unset files[#] = Eliminar elemento de la matriz
+unset files = Elimina por completo todos los elementos de la matriz
+</pre>
+	<h2>Concatenando dos o mas cadenas</h2>
+<pre>
+cadena1="power"
+cadena2="full"
+cadena3=$cadena1$cadena2
+echo $cadena3
+
+powerfull
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Encontrar subcadenas</h2>
+<pre>
+str="Bash is Cool"
+word="Cool"
+expr index "$str" "$word"
+
+10
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Extrayendo subcadenas</h2>
+<pre>
+distro="Kali-linux the best"
+echo ${distro:0:10}
+
+Kali-linux
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Remplazo de subcadenas</h2>
+<pre>
+distro="kali linux the best"
+echo ${distro/is good/the best}
+
+kali linux the best
+qwerty@penguin:~/scripts$ 
+</pre>
+	<h2>Eliminar subcadenas</h2>
+<pre>
+distros=("debian is god")
+echo ${distros/is}
+
+debian god
+qwerty@penguin:~/scripts$
+</pre>
+	<h3>Mas ejemplos :</h3>
+<pre>
+celda="112-123-38039"
+echo ${celda/-} = Elimina solo un guin de la cadena
+echo ${celda//-} = Elimina todos los guines de la cadena
+</pre>
+	<h2>Convertir letras mayusculas y minusculas</h2>
+<pre>
+name="john nash"
+name1="JORGE ROBERTS"
+echo ${name^^} = Convierte todas las letras en mayusculas
+echo ${name^} = Convierte el primer caracter a mayuscula
+
+echo ${variable^^[jn]} = Comvierte las letras especificas en mayusculas
+echo ${variable,,[JE]} = Convierte las letras especificas en minusculas
+
+echo ${name1,,} = Convierte todas las letras en minusculas
+echo ${name1,} = Convierte el primer caracter a minuscula
+</pre>
+	<h2>Condicion if elif else</h2>
+	<h3>Estructura de una condicion</h3>
+<pre class="pre-1">
+if [ condition ]; then
+	code
+elif [ other condition ]; then
+	other code
+else
+	error code
+fi
+</pre>
+	<h2>Condicion case </h2>
+	<h3>Estructura de una condicion case</h3>
+<pre class="pre-1">
+case "variable" in
+	"patron1")
+	comando...
+	;;
+	"patron2")
+	comando...
+	;;
+	"patron3")
+	comando...
+	;;
+esac
+</pre>
+	<h2>Bucle for lista/rango</h2>
+<pre class="pre-1">
+for i in condition; do
+	comand...
+done
+</pre>
+	<h2>Bucle for estilo C</h2>
+<pre>
+for ((i = 0 ; i < 10 ; i++)); do
+	echo "Hello Friend"
+done
+</pre>
+	<h2>Bucle while</h2>
+<pre>
+while [ condition ]; do
+	command...
+done
+</pre>
+	<h2>Funciones</h2>
+	<h3>Estructura de una funcion</h3>
+<pre>
+function_name () {
+commands
+}
+</pre>
+
+
+</body>
+</html>
